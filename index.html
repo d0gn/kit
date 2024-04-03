@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Chat App</title>
+    <link rel="stylesheet" href="./index.css">
 </head>
 <body>
     <div id="chat"></div>
@@ -20,6 +21,7 @@
                 reader.onload = function() {
                     const message = document.createElement('p');
                     message.textContent = reader.result;
+                    message.classList.add('message'); // 메시지에 클래스 추가
                     chat.appendChild(message);
                 };
                 reader.readAsText(event.data);
@@ -27,6 +29,7 @@
                 // 메시지가 문자열인 경우, 직접 표시
                 const message = document.createElement('p');
                 message.textContent = event.data;
+                message.classList.add('message'); // 메시지에 클래스 추가
                 chat.appendChild(message);
             }
         };
