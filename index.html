@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Chat App</title>
-    <link rel="stylesheet" href="./index.css">
 </head>
 <body>
     <div id="chat"></div>
+    <button onclick="change_at_random()"> 랜덤색바꾸기 </button>
+    <button onclick="change_at_randomsize()"> 랜덤크기바꾸기 </button>
     <input type="text" id="messageInput" placeholder="Type a message...">
     <button onclick="sendMessage()">Send</button>
 
@@ -21,7 +22,6 @@
                 reader.onload = function() {
                     const message = document.createElement('p');
                     message.textContent = reader.result;
-                    message.classList.add('message'); // 메시지에 클래스 추가
                     chat.appendChild(message);
                 };
                 reader.readAsText(event.data);
@@ -29,7 +29,6 @@
                 // 메시지가 문자열인 경우, 직접 표시
                 const message = document.createElement('p');
                 message.textContent = event.data;
-                message.classList.add('message'); // 메시지에 클래스 추가
                 chat.appendChild(message);
             }
         };
@@ -38,6 +37,22 @@
             const message = messageInput.value;
             ws.send(message);
             messageInput.value = '';
+        }
+        function get_random_integer ( min, max ) { 	 return Math.floor ( Math.random() * (max - min + 1) ) + min; 	 } 
+        function change_at_random () { 
+            var R = get_random_integer ( 0, 255 ); 
+            var G = get_random_integer ( 0, 255 ); 
+            var B = get_random_integer ( 0, 255 ); 
+
+            var rgbColor = "rgb(" + R + "," + G + "," + B + ")"; 
+
+            document.getElementById ( "chat" ).style.color = rgbColor; 
+            
+        }
+        function change_at_randomsize(){
+            var size = get_random_integer ( 12, 40 ); 
+
+	        document.getElementById ( "chat"  ).style.fontSize = size + "px"; 
         }
     </script>
 </body>
