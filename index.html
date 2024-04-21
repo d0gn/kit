@@ -10,7 +10,7 @@
     }
 </style>
 </head>
-<body id="backcolor">
+<body>
     <div id="chat"></div>
     <input type="text" id="messageInput" placeholder="Type a message...">
     <button onclick="sendMessage()">Send</button>
@@ -20,11 +20,9 @@
         const ws = new WebSocket('ws://localhost:8080');
         const chat = document.getElementById('chat');
         const messageInput = document.getElementById('messageInput');
-        const backgroundState = document.getElementById('backcolor');
         let isBlack = false;
         function changeBackColor() {
-            console.log('눌림');
-            const backgroundState = document.getElementById('backcolor');
+            const backgroundState = document.body;
             if (isBlack) {
                 // 현재 배경색이 검정색인 경우
                 backgroundState.style.backgroundColor = "white";
